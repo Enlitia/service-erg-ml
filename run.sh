@@ -23,4 +23,4 @@ if [ -f "$(dirname "$0")/.env" ]; then
 fi
 
 # Run the CLI with all arguments passed through
-poetry run python -m core_ml.cli ml "$@"
+poetry run python -m ml.cli ml "$@"
