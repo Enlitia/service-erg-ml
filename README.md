@@ -52,8 +52,8 @@ poetry install
 ## Running Locally
 
 ```bash
-# Set client name
-export CLIENT_NAME=erg
+# Client name is auto-detected from config.py, but you can override:
+# export CLIENT_NAME=erg
 
 # List available tasks
 poetry run python -m ml list-tasks
@@ -68,6 +68,7 @@ poetry run python -m ml predict --task advanced_power_forecast --start-date 2024
 ## Configuration
 
 Edit `config.py` to:
+- Set client name (auto-detected by CLI)
 - Enable/disable tasks
 - Configure database credentials
 - Set Nomad schedules
