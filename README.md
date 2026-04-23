@@ -12,8 +12,6 @@ This repository contains only configuration and deployment files for the ERG cli
 service-erg-ml/
 ├── core-ml-platform/          # Git submodule - the complete ML framework
 ├── config.py                  # ERG-specific configuration
-├── run.sh                     # CLI wrapper script
-├── Makefile                   # Convenient commands
 ├── ops/
 │   ├── nomad/                 # Nomad deployment files
 │   │   ├── advanced_power_forecast-train.hcl
@@ -48,44 +46,26 @@ cp .env.example .env
 ### 3. Install Dependencies
 
 ```bash
-make install
-# OR
-cd core-ml-platform && poetry install
+cd core-ml-platform
+poetry install
 ```
 
 ## Running Locally
 
-### Using Make (Easiest)
-
-```bash
-# List available tasks
-make list-tasks
-
-# Run training
-make train
-
-# Run predictions
-make predict
-```
-
-### Using run.sh Script
-
-```bash
-# Train a specific task
-./run.sh train --task advanced_power_forecast
-
-# Generate predictions
-./run.sh predict --task advanced_power_forecast
-
-# List all available tasks
-./run.sh list-tasks
-```
-
-### Direct CLI Usage
-
 ```bash
 cd core-ml-platform
-poetry run python -m core_ml.cli ml train --task advanced_power_forecast
+
+# Set client name
+export CLIENT_NAME=erg
+
+# List available tasks
+poetry run python -m ml list-tasks
+
+# Run training
+poetry run python -m ml train --task advanced_power_forecast
+
+# Run predictions
+poetry run python -m ml predict --task advanced_power_forecast --start-date 2024-01-01
 ```
 
 ## Configuration
