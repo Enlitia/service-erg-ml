@@ -46,15 +46,12 @@ cp .env.example .env
 ### 3. Install Dependencies
 
 ```bash
-cd core-ml-platform
 poetry install
 ```
 
 ## Running Locally
 
 ```bash
-cd core-ml-platform
-
 # Set client name
 export CLIENT_NAME=erg
 
