@@ -1,0 +1,3 @@
+[submodule "core-ml-platform"]
+	path = core-ml-platform
+	url = git@github.com:Enlitia/core-ml-platform.git
