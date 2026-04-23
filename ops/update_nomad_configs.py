@@ -27,7 +27,7 @@ from clients.base import NomadTaskConfig
 from ml.tasks import TASK_CONFIG_REGISTRY
 
 # Default configuration values
-GITHUB_TOKEN = "${GITHUB_TOKEN}"  # Use environment variable or Nomad variable
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "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")
 DEFAULT_TRAIN_CRON = "0 4 * * *"  # Daily at 4am UTC
 DEFAULT_PREDICT_CRON = "0 */4 * * *"  # Every 4 hours
 DEFAULT_MEMORY_MB = 1024

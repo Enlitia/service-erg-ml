@@ -20,7 +20,7 @@ job "ml-erg-advanced_power_forecast-predict" {
  
         auth {
             username = "__token__"
-            password = "${GITHUB_TOKEN}"  # Set in Nomad variables
+            password = "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"
         }
 
         volumes = [
@@ -36,8 +36,8 @@ job "ml-erg-advanced_power_forecast-predict" {
  
       env {
         CLIENT_NAME = "erg"
-        DB_USER = "${DB_USER}"  # Set in Nomad variables
-        DB_PASSWORD = "${DB_PASSWORD}"  # Set in Nomad variables
+        DB_USER = "app_hub"
+        DB_PASSWORD = "2PWcx7VbxCHtRJNwQe1IUovN"
         SM_SETTINGS_MODULE = "production"
       }
  

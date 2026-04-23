@@ -20,7 +20,7 @@ job "advanced-power-forecast" {
  
         auth {
             username = "__token__"
-            password = "${GITHUB_TOKEN}"  # Set in Nomad variables
+            password = "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"
         }
 
         command = "python"
