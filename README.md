@@ -12,6 +12,8 @@ This repository contains only configuration and deployment files for the ERG cli
 service-erg-ml/
 ├── core-ml-platform/          # Git submodule - the complete ML framework
 ├── config.py                  # ERG-specific configuration
+├── run.sh                     # CLI wrapper script
+├── Makefile                   # Convenient commands
 ├── ops/
 │   ├── nomad/                 # Nomad deployment files
 │   │   ├── advanced_power_forecast-train.hcl
@@ -22,7 +24,7 @@ service-erg-ml/
 └── README.md
 ```
 
-## Setup
+## Quick Start
 
 ### 1. Clone with Submodule
 
@@ -43,11 +45,70 @@ cp .env.example .env
 # Edit .env with actual credentials
 ```
 
+### 3. Install Dependencies
+
+```bash
+make install
+# OR
+cd core-ml-platform && poetry install
+```
+
+## Running Locally
+
+### Using Make (Easiest)
+
+```bash
+# List available tasks
+make list-tasks
+
+# Run training
+make train
+
+# Run predictions
+make predict
+```
+
+### Using run.sh Script
+
+```bash
+# Train a specific task
+./run.sh train --task advanced_power_forecast
+
+# Generate predictions
+./run.sh predict --task advanced_power_forecast
+
+# List all available tasks
+./run.sh list-tasks
+```
+
+### Direct CLI Usage
+
+```bash
+cd core-ml-platform
+poetry run python -m core_ml.cli ml train --task advanced_power_forecast
+```
+
 ## Configuration
 
-Edit `config.py` to configure ERG-specific settings.
+Edit `config.py` to:
+- Enable/disable tasks
+- Configure database credentials
+- Set Nomad schedules
+- Adjust task parameters
 
 ## Deployment
 
-Build and deploy using Docker and Nomad.
+### Build Docker Image
+
+```bash
+docker build -t ghcr.io/enlitia/service-erg-ml:latest .
+```
+
+### Deploy to Nomad
+
+```bash
+# Deploy jobs
+nomad job run ops/nomad/advanced_power_forecast-train.hcl
+nomad job run ops/nomad/advanced_power_forecast-predict.hcl
+```
 
