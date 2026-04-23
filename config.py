@@ -12,8 +12,8 @@ class ClientConfig(BaseSettings):
 
     # Database Configuration
     db_name: str = "erg"
-    db_user: str = os.getenv("DB_USER", "app_hub")
-    db_password: str = os.getenv("DB_PASSWORD", "")
+    db_user: str = "app_hub"
+    db_password: str = "2PWcx7VbxCHtRJNwQe1IUovN"
     db_host: str = "192.168.60.18"
     db_port: int = 5432
 
