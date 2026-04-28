@@ -8,7 +8,7 @@ code and deployment configs.
 
 Usage:
     PYTHONPATH=src python ops/update_nomad_configs.py
-    
+
 This will:
 1. Read all clients from CLIENT_REGISTRY
 2. For each client and enabled task, generate train.hcl and predict.hcl files
@@ -57,7 +57,7 @@ def generate_nomad_config(
     job_type: str,  # "train" or "predict"
 ) -> str:
     """Generate Nomad config from template by replacing placeholders.
-    
+
     Args:
         config_registry_key: The registry key used to lookup the config (for job name, CLI param)
         task_folder_name: The actual folder name where train.py/predict.py lives (from config.task_name)
@@ -83,25 +83,25 @@ def create_task_configs(
     task_config: NomadTaskConfig,
 ) -> None:
     """Create Nomad config files for a client task.
-    
+
     Args:
         config_registry_key: Key used in TASK_CONFIG_REGISTRY (e.g., "advanced_power_forecast_custom1")
         task_config: NomadTaskConfig from client
     """
-    
+
     # Skip if task is disabled
     if not task_config.enabled:
         print(f"  ⊘ Skipping disabled task '{config_registry_key}'")
         return
-    
+
     # Lookup the actual task config to get the folder name
     if config_registry_key not in TASK_CONFIG_REGISTRY:
         print(f"  ❌ Config '{config_registry_key}' not found in TASK_CONFIG_REGISTRY")
         return
-    
+
     task_config_obj = TASK_CONFIG_REGISTRY[config_registry_key]
     task_folder_name = task_config_obj.task_name  # The actual folder name
-    
+
     client_dir = OUTPUT_DIR / client_name
     client_dir.mkdir(parents=True, exist_ok=True)
 
@@ -167,14 +167,14 @@ def main():
         sys.exit(1)
 
     total_tasks = 0
-    
+
     for client_name, client_config in CLIENT_REGISTRY.items():
         print(f"\n📦 Client: {client_name}")
-        
+
         if not client_config.tasks:
-            print(f"  ⚠️  No tasks configured for this client")
+            print("  ⚠️  No tasks configured for this client")
             continue
-        
+
         for task_name, task_config in client_config.tasks.items():
             try:
                 create_task_configs(
@@ -191,7 +191,7 @@ def main():
                 continue
 
     print("\n" + "=" * 60)
-    print(f"✅ Successfully updated Nomad configs")
+    print("✅ Successfully updated Nomad configs")
     print(f"   Clients: {len(CLIENT_REGISTRY)}")
     print(f"   Tasks: {total_tasks}")
     print("=" * 60)

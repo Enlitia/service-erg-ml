@@ -38,4 +38,3 @@ ENV PYTHONPATH=/app/core-ml-platform/src:/app
 
 # CLI entry point from core-ml-platform
 CMD ["python", "-m", "core_ml.cli"]
-
