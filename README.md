@@ -89,4 +89,3 @@ docker build -t ghcr.io/enlitia/service-erg-ml:latest .
 nomad job run ops/nomad/advanced_power_forecast-train.hcl
 nomad job run ops/nomad/advanced_power_forecast-predict.hcl
 ```
-
