@@ -12,11 +12,6 @@ This repository contains only configuration and deployment files for the ERG cli
 service-erg-ml/
 ├── core-ml-platform/          # Git submodule - the complete ML framework
 ├── config.py                  # ERG-specific configuration
-├── ops/
-│   ├── nomad/                 # Nomad deployment files
-│   │   ├── advanced_power_forecast-train.hcl
-│   │   └── advanced_power_forecast-predict.hcl
-│   └── update_nomad_configs.py
 ├── Dockerfile                 # Builds ERG container with framework
 ├── .env.example               # Environment variables template
 └── README.md
@@ -84,8 +79,6 @@ docker build -t ghcr.io/enlitia/service-erg-ml:latest .
 
 ### Deploy to Nomad
 
-```bash
-# Deploy jobs
-nomad job run ops/nomad/advanced_power_forecast-train.hcl
-nomad job run ops/nomad/advanced_power_forecast-predict.hcl
-```
+Nomad job files are managed in the `service-erg-data-infra` repository under `nomad/jobs/ml/`.
+
+See the data-infra repository for deployment instructions.
